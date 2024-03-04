@@ -25,12 +25,12 @@ def main(args):
 
     model, loss, acc, test_acc = common_train(model, train_loader, test_loader, args)
     common_test(model, test_loader, args)
-    save_data(loss, '/home/ubuntu/users/dky/CLIP-KD/results/curve_data/cm_train_loss.txt')
-    save_data(test_acc, '/home/ubuntu/users/dky/CLIP-KD/results/curve_data/cm_test_loss.txt')
-    save_model(model, '/home/ubuntu/users/dky/CLIP-KD/results/weights/student_whole.pt')
-    draw_curves(loss, '/home/ubuntu/users/dky/CLIP-KD/results/curves/cm_train_loss.png', True)
-    draw_curves(acc, '/home/ubuntu/users/dky/CLIP-KD/results/curves/cm_train_acc.png', True)
-    draw_curves(test_acc, '/home/ubuntu/users/dky/CLIP-KD/results/curves/cm_test_acc.png', True)
+    save_data(loss, './results/curve_data/cm_train_loss.txt')
+    save_data(test_acc, './results/curve_data/cm_test_loss.txt')
+    save_model(model, './results/weights/student_whole.pt')
+    draw_curves(loss, './results/curves/cm_train_loss.png', True)
+    draw_curves(acc, './results/curves/cm_train_acc.png', True)
+    draw_curves(test_acc, './results/curves/cm_test_acc.png', True)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch KD-Clip')

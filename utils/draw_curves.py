@@ -43,7 +43,7 @@ def smooth_curve_n(points, n=3):
 if __name__ == '__main__':
     # 读入LOSS
 
-    loss = np.loadtxt('/home/ubuntu/users/dky/CLIP-KD/results/curve_data/cm_train_loss.txt')
+    loss = np.loadtxt('./results/curve_data/cm_train_loss.txt')
     # loss = remove_outliers(loss)
     # loss = smooth_curve_n(loss,4)
-    draw_curves(loss, '/home/ubuntu/users/dky/CLIP-KD/results/curves/loss_CT.png', False)
+    draw_curves(loss, './results/curves/loss_CT.png', False)

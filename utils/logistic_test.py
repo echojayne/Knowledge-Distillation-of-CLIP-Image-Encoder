@@ -31,6 +31,6 @@ if __name__ == '__main__':
     device = 'cuda:1'
     model = GenTeacher('ViT-B/32', device)  # size of teacher model is 87,849,216
     # 加载权重
-    # model.load_state_dict(torch.load('/home/ubuntu/users/dky/CLIP-KD/results/weights/student.pt'))
+    # model.load_state_dict(torch.load('./results/weights/student.pt'))
     train_loader, test_loader = get_datasets(image_transform, 32, 'stl10')
     logic_test(model, train_loader, test_loader, device)

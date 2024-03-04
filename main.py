@@ -11,7 +11,7 @@ def main(args):
 
     teacher_model = GenTeacher(args.teacher_model, args.device)      # size of teacher model is 87,849,216
     student_model = GenStudent(vit_parameters, args.device)  # size of student model is 17,367,552
-    student_model.load_state_dict(torch.load('/home/ubuntu/users/dky/CLIP-KD/results/weights/student_stl10.pt'), strict=False)
+    student_model.load_state_dict(torch.load('./results/weights/student_stl10.pt'), strict=False)
     classifier_tec = GenClassifier(512, 10, classifier_layels_list, args.device)
     classifier_stu = GenClassifier(512, 10, classifier_layels_list, args.device)
 
@@ -29,24 +29,24 @@ def main(args):
     # Classifier for pre-training teacher models
     # classifier_tec, ACC, LOSS = pre_train(teacher_model, classifier_tec, train_loader, args)
     # test(teacher_model, classifier_tec, test_loader, args)
-    # save_data(ACC, '/home/ubuntu/users/dky/CLIP-KD/results/curve_data/pre_train_acc.txt')
-    # save_data(LOSS, '/home/ubuntu/users/dky/CLIP-KD/results/curve_data/pre_train_loss.txt')
-    # save_model(classifier, '/home/ubuntu/users/dky/CLIP-KD/results/weights/classifier.pt')
+    # save_data(ACC, './results/curve_data/pre_train_acc.txt')
+    # save_data(LOSS, './results/curve_data/pre_train_loss.txt')
+    # save_model(classifier, './results/weights/classifier.pt')
 
-    classifier_tec.load_state_dict(torch.load('/home/ubuntu/users/dky/CLIP-KD/results/weights/classifier_tea_stl10.pt'), strict=False)
+    classifier_tec.load_state_dict(torch.load('./results/weights/classifier_tea_stl10.pt'), strict=False)
     test(teacher_model, classifier_tec, test_loader, args)
     student_model, LOSS_kd = student_kd(student_model, teacher_model, train_loader, args)
     test(student_model, classifier_tec, test_loader, args)
     classifier_stu, ACC, LOSS = pre_train(student_model, classifier_stu, train_loader, args)
     test(student_model, classifier_stu, test_loader, args)
-    save_data(LOSS_kd, '/home/ubuntu/users/dky/CLIP-KD/results/curve_data/kd_train_loss_stl10.txt')
-    save_data(ACC, '/home/ubuntu/users/dky/CLIP-KD/results/curve_data/train_classifier_stu_acc_stl10.txt')
-    save_data(LOSS, '/home/ubuntu/users/dky/CLIP-KD/results/curve_data/train_classifier_stu_loss_stl10.txt')
-    save_model(student_model, '/home/ubuntu/users/dky/CLIP-KD/results/weights/student_stl10.pt')
-    save_model(classifier_stu, '/home/ubuntu/users/dky/CLIP-KD/results/weights/classifier_stu_stl10.pt')
-    draw_curves(LOSS_kd, '/home/ubuntu/users/dky/CLIP-KD/results/curves/kd_train_loss_stl10.png', True)
-    draw_curves(ACC, '/home/ubuntu/users/dky/CLIP-KD/results/curves/train_classifier_stu_acc_stl10.png', False)
-    draw_curves(LOSS, '/home/ubuntu/users/dky/CLIP-KD/results/curves/train_classifier_stu_loss_stl10.png', False)
+    save_data(LOSS_kd, './results/curve_data/kd_train_loss_stl10.txt')
+    save_data(ACC, './results/curve_data/train_classifier_stu_acc_stl10.txt')
+    save_data(LOSS, './results/curve_data/train_classifier_stu_loss_stl10.txt')
+    save_model(student_model, './results/weights/student_stl10.pt')
+    save_model(classifier_stu, './results/weights/classifier_stu_stl10.pt')
+    draw_curves(LOSS_kd, './results/curves/kd_train_loss_stl10.png', True)
+    draw_curves(ACC, './results/curves/train_classifier_stu_acc_stl10.png', False)
+    draw_curves(LOSS, './results/curves/train_classifier_stu_loss_stl10.png', False)
     # logic_test(student_model, train_loader, test_loader, args.device)
 
 if __name__ == '__main__':

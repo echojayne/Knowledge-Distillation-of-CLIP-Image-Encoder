@@ -15,7 +15,7 @@ if __name__ == '__main__':
     model_student = GenStudent(vit_parameters, 'cuda:2')
     model_teacher = GenTeacher('ViT-B/32', 'cuda:2')
     # 加载权重
-    model_student.load_state_dict(torch.load('/home/ubuntu/users/dky/CLIP-KD/results/weights/student_84.7.pt'), strict=False)
+    model_student.load_state_dict(torch.load('./results/weights/student_84.7.pt'), strict=False)
 
     stat(model_student, (3, 224, 224))
 
