@@ -2,8 +2,8 @@
 Distillate the CLIP Image Encoder to a ViT Network
 
 # System architecture
-![System architecture](./models/Arch.png "System architecture")
- 
+ <img src="./models/Arch.png" alt="System architecture" width="200" height="100">
+
 The overall architecture is shown in the figure above. The image encoder of CLIP is distilled into a small ViT architecture. Here, the features before the classification layer are distilled, using the MSE loss. The teacher and student models can each train their own classification networks.
 
 # Usage
